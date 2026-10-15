@@ -25,7 +25,7 @@
 
 ## Step 3: Configure your workflow.
 
-#### *Written instructions*:
+#### [*Written instructions*](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/blob/main/setupinstructions/SetupPart3_ComputationalWorkflow.md)
 
 #### *Video instructions*:
 1. [R Studio Basics](https://youtu.be/_rieqQ4rcgg?si=NzqyFKNjAkN9KW5y)
