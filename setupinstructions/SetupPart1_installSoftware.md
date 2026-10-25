@@ -3,8 +3,7 @@ You can find a video version of these instructions here:
 1. [Installing R and R studio](https://youtu.be/bECWYQgqCqs?si=3FQc2SKaUe112kO6): **For new R users**: 
 2. [Updating old versions of R and R studio](https://youtu.be/Hlv14tEY6gQ?si=L0g0IaPzrM3RVVb9): **For intermittent R users who may have not updated things in a while**:
 3. [Making a custom package library for R](https://youtu.be/ynfiEe9T5bc?si=y6_QX4SpKccw8Ly0): **An optional step that makes it easier to manage packages across computers and software updates:**. 
-
-4. [Setup Git and Github with R studio](https://youtu.be/Yi1pWV3f3RI?si=dL2NUctNCjHwTcyF): **An option step if you want to use Git and Github for version control. 
+4. [Setup Git and Github with R studio](https://youtu.be/Yi1pWV3f3RI?si=dL2NUctNCjHwTcyF): **An optional step if you want to use Git and Github for version control.** 
 
 ## Overview
 
@@ -35,7 +34,7 @@ These instructions will allow you to work with R and RStudio on your local machi
 
 ----------------------
 
-1. Install the most recent release of **R (v 4.5.1)** from https://cran.rstudio.com/.
+1. Install the most recent release of **R (v 4.6.1)** from https://cran.rstudio.com/.
 
 At the top of the page, select the Download link for your system (Windows, macOS, or Linux). The installation steps differ across operating systems. This page gives instructions for each operating system: https://rstudio-education.github.io/hopr/starting.html#how-to-download-and-install-r. For Windows and Mac, the installation involves downloading and running an installer program.   
 
@@ -65,6 +64,7 @@ Run the command `sudo apt-get install build-essential`.
 4. If you don't have one already, **create a GitHub account** at https://github.com/. See here for detailed instructions: https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github.  
 
 --------------------
+## Optional steps:
 
 5.	Install the **Git** software from http://git-scm.com/downloads. 
 
@@ -112,8 +112,6 @@ The `Git\cmd` folder should already be included here. If it is not, you should a
  
 
 
-
-
 -------------------------
 
 ## Configuring Rstudio Desktop
@@ -131,6 +129,8 @@ If you have an older version of R on your computer, it is possible that Rstudio 
 The R version at the top should be the one you most recently installed (i.e., 4.5.1). If it is not, click change and follow the prompts to find the most current version of R.  
 
 --------------
+
+## Optional steps:
 
 2. Set up version control.
 

@@ -1,0 +1,317 @@
+---
+title: "Telling a Data Story"
+author: "Katherine Muller"
+date: "2025-11-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This document corresponds to the lecture "Telling a Data Story" for the 2026 course in Bayesian data analysis from the Sustainability Lake Chad project. 
+
+## Learning goals
+
+- Understand what it means for a statistical model to tell a data story, rather than simply describing a dataset.
+- ...something about science first...Begin thinking in terms of causation and scientific hypotheses
+- Tell a data story for one or more real-world examples
+- Bring a data story to life in R.
+
+## Using statistical models to describe data
+
+### Dataset: "heights"
+
+- Height data from the US Bureau of Labor Statistics National Longitudinal Survey, 2012
+- Imported from the *modelr* package
+- Includes various demographic data for US adults
+
+```{r, echo = FALSE}
+library(tidyverse)
+library(cowplot) # package for combining ggplots (there are many)
+library(modelr)
+```
+
+```{r, echo = TRUE}
+# load data to environment
+data(heights)
+summary(heights)
+```
+## Using statistical models to describe data
+
+We can plot the distribution of height in this dataset.
+
+When we visualize data distribution, we typically look at **probability density** over the range of the data.
+The plots below illustrate what we mean by probability density. 
+
+- The plot on the left splits the height data into one-inch bins and counts the number of individuals in each bin.
+- The plot on the right does the same thing, then divides by the total number of individuals so each bin is a proportion and all bins sum to one. The empirical probability density, drawn with the geom_density function, essentially does the same thing, but with bins that are so small they make a smooth line. 
+
+```{r, warning = FALSE}
+p1 <- ggplot(heights) + geom_histogram(aes(x = height, y = stat(count)),binwidth=1)
+p2a <-ggplot(heights) + geom_histogram(aes(x = height, y = stat(density)),binwidth=1) 
+p2 <-  p2a +  geom_density(aes(x=height), color = "orange", lwd=1.3)
+cowplot::plot_grid(p1, p2)
+
+```
+
+
+## Descriptive models:
+
+This distribution can be described using a gaussian probability density function.
+
+### Model 1: One mean and one variance
+
+
+$$
+\begin{align*}
+&\text{height} \sim \mathcal{N}(\mu, \sigma) \\
+&\mu \approx \text{mean(height)}, \quad \sigma \approx \text{sd(height)}
+\end{align*}
+$$
+
+
+### Model 2: Mixture with means and variances for men and women
+
+$$
+\begin{align*}
+\text{height} &\sim \phi_W\mathcal{N}(\mu_W, \sigma_W) +  (1-\phi_W)\mathcal{N}(\mu_M, \sigma_M)\\
+&\mu_W \approx \text{mean}(\text{height}_W), \quad \mu_M \approx \text{mean}(\text{height}_M) \\
+&\sigma_W \approx \text{sd}(\text{height}_W), \quad \sigma_M \approx \text{sd}(\text{height}_M) \\
+&\phi_W \approx N_W / N_{obs}
+\end{align*}
+$$
+
+```{r}
+
+m1pars <- heights %>% summarize(mean = mean(height, na.rm=TRUE), 
+                                sd = sd(height, na.rm= TRUE))
+m2pars <- heights %>% group_by(sex) %>% # performs calculations separately on each group
+                      summarize(mean = mean(height, na.rm=TRUE), # summary statistics 
+                                 sd = sd(height, na.rm= TRUE),
+                                N = n()) %>% ungroup() %>% # need to ungroup to get the sum of men and women
+                      mutate(phi = N/sum(N) ) %>%
+                      split(.$sex) ## splits male and female rows into a named list.
+
+# the height range in the data spans 52-84 inches. I'm going to plot a range that's slightly wider.
+heightspan <- seq(50,90,by=0.2)
+
+## Use dnorm to calculate the theoretical probability density for a 
+# gaussian distribution with specified mean, variance, and data values. This is the same 
+# as plugging everything into the gaussian probability density function
+model1 <- dnorm(x = heightspan, mean = m1pars$mean, sd = m1pars$sd)
+model2 <- m2pars$female$phi * dnorm(x = heightspan, mean = m2pars$female$mean, sd = m2pars$female$sd) +
+      m2pars$male$phi * dnorm(x = heightspan, mean = m2pars$male$mean, sd = m2pars$male$sd)
+  
+```
+
+
+
+
+```{r, warning = FALSE}
+## when combining data objects on the same plot, you have to call the 
+# data in the plot component, rather than the ggplot environment.
+ymax <- max(model1, model2, na.rm=TRUE) ## get the maximum density to set y axis limits
+
+## base histogram
+p0 <- ggplot() + geom_histogram(data = heights,aes(x = height, y = stat(density)),binwidth=1)+
+  coord_cartesian(ylim = c(0, ymax),xlim = c(50,90))  # axis limits
+
+## add mean and sd
+p0a <- p0 +  geom_vline(xintercept = m1pars$mean, color = "blue",lwd=1.3) +
+  geom_segment(data = m1pars, aes(x = mean - sd, xend = mean + sd,y=0, yend = 0), color = "blue", lwd = 1.3) + labs(title = "Summary stats")
+
+pempirical <- p0 +
+  geom_density(data = heights,aes(x=height), color = "orange", lwd=1.3)+
+  #labs(title = "Empirical\nprobability\ndensity") +
+  labs(title = "Empirical probability density") +
+  
+  theme(title = element_text(color= "orange"), # specify the color of the title and axis titles
+        axis.title = element_text(color = "black", size=10))
+
+p1 <- p0a + geom_line(aes(x = heightspan, y = model1), col = "blue", lwd=1.3) + 
+  #labs(title = "Model 1:\nOne Gaussian\n population") + # version for Rmd
+  labs(title = "Model 1") + # version for slide
+  theme(title = element_text(color= "blue",size=10), # specify the color of the title and axis titles
+        axis.title = element_text(color = "black"))
+
+p2 <- p0+
+  geom_line(aes(x = heightspan, y = model2), col = "red", lwd=1.3) + 
+  #labs(title = "Model 2:\nGaussian mixture\nof men and women") + # version for Rmd
+  labs(title = "Model 2") + # version for slide
+  theme(title = element_text(color= "red",size = 10), # specify the color of the title and axis titles
+        axis.title = element_text(color = "black"))
+
+## I include cowplot:: to demonstrate what package this 
+# comes from. It's not strictly needed because I loaded the package earlier
+cowplot::plot_grid(p1, p2, pempirical,nrow=1)
+```
+
+
+## Illustrating data generating process
+Computers have in-built tools for representing and sampling from statistical models.
+For a list of built-in statistical functions in R, see:
+https://rstudio.github.io/r-manuals/r-intro/Probability-distributions.html#r-as-a-set-of-statistical-tables
+
+### Theoretical probability density
+
+```{r}
+heightvector <- seq(50,90,by=0.2)
+## summary statistics from data 
+mu <- mean(heights$height) #67.10
+sigma <- sd(heights$height) # 4.08
+
+probability_density <- dnorm(heightvector, mean = mu, sd = sigma)
+cumulative_probability_density <- pnorm(heightvector, mean = mu, sd = sigma)
+inverse_cdf <- qnorm(cumulative_probability_density, mean = mu, sd= sigma)
+
+heightsample <- rnorm(n=100, mean = mu, sd = sigma)
+
+
+par(mfcol=c(1,3))
+plot(heightvector, probability_density,xlab = "height data", ylab = "dnorm",cex.lab = 1.4, cex.axis=1.3)
+plot(heightvector, cumulative_probability_density,xlab = "height quantile",ylab = "pnorm", cex.lab = 1.4,cex.axis=1.3)
+plot(cumulative_probability_density,inverse_cdf, xlab = "probability",ylab = "qnorm", cex.lab = 1.4,cex.axis=1.3)
+par(mfcol= c(1,1))
+
+```
+
+### Sampling from a distribution
+
+#### Model 1
+
+```{r}
+## simple model
+mu <- mean(heights$height) #67.10
+sigma <- sd(heights$height) # 4.08
+
+set.seed(20)# makes sure the random number generator produces the same results when we run it again.
+# it doesn't matter what the number is in set.seed.
+
+## plotting different sample sizes
+samp10 <- rnorm(n = 10, mean = mu, sd = sigma)
+samp100 <- rnorm(n = 100, mean = mu, sd = sigma)
+samp1000 <- rnorm(n = 1000, mean = mu, sd = sigma)
+samp10000 <- rnorm(n = 10000, mean = mu, sd = sigma)
+
+## repeated sampling:
+## ten samples of n = 10
+samp2 <- matrix(data = NA, nrow = 10, ncol = 10)
+for(i in 1:10){
+  samp2[,i] <- rnorm(n = 10, mean = mu, sd = sigma)
+}
+
+
+m1line <- geom_line(aes(x = heightspan, y = model1), color = "blue", lwd=1.3) 
+ylims <-  coord_cartesian(ylim = c(0, 0.25),xlim = c(50,90)) 
+  
+
+p10 <- ggplot() + geom_histogram(aes(x= samp10, y = stat(density))) + m1line + ylims + labs(x = "height", title = "n = 10")
+p100 <- ggplot() + geom_histogram(aes(x= samp100, y = stat(density))) + m1line + ylims+ labs(x = "height", title = "n = 100")
+p1000 <- ggplot() + geom_histogram(aes(x= samp1000, y = stat(density))) + m1line + ylims + labs(x = "height", title = "n = 1000")
+
+p10000 <- ggplot() + geom_histogram(aes(x= samp10000, y = stat(density))) + m1line + ylims+ labs(x = "height", title = "n = 10000")
+
+cowplot::plot_grid(p10,p100,p1000,p10000,nrow = 1)
+
+```
+
+#### Model 2
+
+```{r, warning= FALSE}
+## sample means and standard deviation for women and men:
+mu = mean(heights$height)
+sigma <- sd(heights$height)
+mu_w <- m2pars$female$mean # 64.3
+mu_m <- m2pars$male$mean # 70.1
+sd_w <- m2pars$female$sd # 2.72
+sd_m <- m2pars$male$sd # 2.99 
+## proportion of women in the sample
+phi_w <- m2pars$female$phi # 0.51
+
+N <- 10000 # sample size
+W <- round(N * phi_w) # number of women, rounded to the nearest integer
+M <- N - W # number of men
+
+# make a column for women and men to add to the data:
+gender <- c(rep("female",W),rep("male",M))
+
+set.seed(10)
+sampmodel1 <- rnorm(N, mean = mu, sd = sigma)
+sampmodel2 <-c(rnorm(W, mean = mu_w, sd = sd_w), 
+           rnorm(M, mean = mu_m, sd = sd_m))
+m1df <- data.frame(sex = factor(gender, levels = c("female","male")),
+                   height = sampmodel1)
+m2df <- data.frame(sex = factor(gender,levels = c("female","male")),
+                   height = sampmodel2)
+
+## make sure factor levels order the same way
+heights$sex <- factor(heights$sex, levels = c("female","male"))
+
+p0 <- ggplot(data = heights) + 
+  geom_histogram(aes(x = height, fill = sex,y = stat(density)),alpha = 0.5,binwidth = 1, position = "identity") + 
+  # alpha = 0.5 adds transparency to better see overlap
+  # position = identity means that the bars show the number in each group, instead of the combined number
+  labs(title = "Observed Data") 
+p1 <- ggplot(data = m1df) + 
+  geom_histogram(aes(x = height, y = stat(density),fill = sex),alpha = 0.5, binwidth = 1, position = "identity") +
+  labs(x = "height", title = "Model 1 Simulation") 
+p2 <- ggplot(data = m2df) + 
+  geom_histogram(aes(x = height, y = stat(density),fill = sex),alpha = 0.5, binwidth = 1, position = "identity") + 
+  labs(x = "height", title = "Model 2 Simulation") 
+
+cowplot::plot_grid(p0, p1, p2)
+
+```
+
+# Exercises:
+
+0. Adapt the code above to make a function that generates a sample for height data for men and women based on model 2 (gaussian mixture). The code chunk below has a template with steps
+```{r,eval=FALSE}
+sample_mw_height <- function( FILLIN ){## define the arguments for your function. We need the model parameters and the sample size. 
+  
+  ## calculate the number of women and men based on N and phi_w
+  
+  ## Sample a vector of women heights
+  ## Sample a vector of men heights
+  
+  ## Concatenate women and men heights into one vector
+  
+  ## Make a dataframe with sex and sampled heights
+  
+  outdf <- data.frame(FILL IN)
+
+  ## return the dataframe
+  return(outdf)
+} 
+
+```
+
+
+Using this function as a starting point, simulate the following scenarios. Use the code in the plot above as a starting point for visualizing your simulations. 
+
+
+1. The population represented in the 2012 heights survey is hit by a terrible disease that kills 10% of women and 30% of men. Simulate a new survey with 1000 people. Draw a histogram of your simulation alongside the original sample.
+```{r}
+
+
+
+```
+
+
+2. The survivors from the terrible disease experience strange changes in height. Now the average woman is twice as tall as the average man. Simulate a new survey with 10000 people. Draw a histogram of your simulation.
+
+```{r}
+
+
+```
+
+3. Thanks to the terrible disease, your capacity to conduct surveys is more limited than it was before. Using the population from question 2, simulate a survey of 100, 1000, and 10000 people. Repeat each survey 3 times. How does the sample size affect the consistency of your results? Draw histograms of all your simulations.  
+
+```{r}
+
+```
+
+
+
+
