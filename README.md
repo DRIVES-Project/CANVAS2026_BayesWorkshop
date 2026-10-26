@@ -35,8 +35,9 @@ These materials were developed for a January 2026 workshop, ["Bayesian statistic
   
 </details>
 
+### Computational tools and setup
 <details>
-	<summary><h3>Computational tools and setup<h3></summary>
+	<summary>...</summary>
 
 #### *Written setup instructions*:
 
@@ -45,6 +46,7 @@ These materials were developed for a January 2026 workshop, ["Bayesian statistic
 - [Computational workflow](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/blob/main/setupinstructions/SetupPart3_ComputationalWorkflow.md)
 
 #### *Videos*:
+
 - [Why R and R studio?](https://youtu.be/nlBJbyaClpI?si=TKxwwMC066XgpOzD)
 - [Why Git and Github?](https://youtu.be/m8XTHLjRJYg?si=DEbGYji42h1c33q1)
 - [Installing R and R studio](https://youtu.be/bECWYQgqCqs?si=3FQc2SKaUe112kO6) (For new R users)
@@ -59,16 +61,20 @@ These materials were developed for a January 2026 workshop, ["Bayesian statistic
 
 </details>
 
+### Building models from research questions
+
 <details>
-	<summary><h3>Building models from research questions</h2></summary>
+	<summary>...</summary>
 
 1. Telling a data story. [Video](https://youtu.be/VA8hZXEoSxU?si=7F3rVlzSTEAao4YJ), [Exercises](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/tree/main/exercises/TellingADataStoryExercises), [Slides](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/blob/main/slides/TellingADataStorySlides.pdf)
 2. Using causal diagrams to build models [Video](https://youtu.be/3wbwSOsG3N0?si=QHDwYGyT-lYK1Z8u), [Exercises](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/tree/main/exercises/CausalDiagramExercises), [Slides](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/blob/main/slides/CausalDiagramSlides.pdf)
 
 </details>
 
+### Theory fundamentals
+
 <details>
-	<summary><h3>Theory fundamentals</h3></summary>
+	<summary><h3>...</h3></summary>
   
 1. What/Why Bayes?: [Video](https://youtu.be/r7a_ju_l08I?si=rfazG5zN0FvqINMX)
 2. Basics of Bayesian inference: [Video](https://youtu.be/7ZWfpiweRIA?si=EBXpC2taAAD2tV01), [Slides](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/blob/main/slides/BasicsOfBayesianInferenceSlides.pdf)
@@ -78,10 +84,10 @@ These materials were developed for a January 2026 workshop, ["Bayesian statistic
 </details>
 
 
-
+### R coding basics
 
 <details>
-	<summary><h3>R coding basics<h3></summary>
+	<summary>...</summary>
 	
 ### *You Can Learn R*
 
