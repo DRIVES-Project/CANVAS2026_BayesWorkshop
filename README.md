@@ -31,7 +31,7 @@
 
 <details open>
 	<summary>...</summary>
-These materials were developed for a January 2026 workshop, ["Bayesian statistics in Sustainability Science with a focus on Agrarian Societies and Ecosystem Services in the Lake Chad Basin"](https://github.com/lakechadproject/BayesWorkshop2026) developed for the [Sustainability Lake Chad Project](https://www.sustainabilitylakechad.com/).
+These materials were developed for a January 2026 workshop, [*Bayesian statistics in Sustainability Science with a focus on Agrarian Societies and Ecosystem Services in the Lake Chad Basin*](https://github.com/lakechadproject/BayesWorkshop2026) developed for the [Sustainability Lake Chad Project](https://www.sustainabilitylakechad.com/).
   
 </details>
 
@@ -74,7 +74,7 @@ These materials were developed for a January 2026 workshop, ["Bayesian statistic
 ### Theory fundamentals
 
 <details>
-	<summary><h3>...</h3></summary>
+	<summary>...</summary>
   
 1. What/Why Bayes?: [Video](https://youtu.be/r7a_ju_l08I?si=rfazG5zN0FvqINMX)
 2. Basics of Bayesian inference: [Video](https://youtu.be/7ZWfpiweRIA?si=EBXpC2taAAD2tV01), [Slides](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/blob/main/slides/BasicsOfBayesianInferenceSlides.pdf)
