@@ -189,8 +189,10 @@ newdata <- data.frame(gen = c("DD","RR"),
                       year = c("96") )
 
 psampnew <- posterior_predict(modelfit,ndraws = 1000,newdata = newd)
+psampnew
 
-## predict data excluding the group-level effect of year
+## predict data excluding the group-level effect of year (i.e., marginal effect conditional on year)
 psampnoyear <- posterior_predict(modelfit,ndraws = 1000,re_formula = ~0)
+psampnoyear
 
 

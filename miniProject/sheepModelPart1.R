@@ -54,27 +54,30 @@ hist(sheep$std_birthwt, bins = 20)
 # Build model-----------
 # response variable: birthwt
 # predictors: gen, sex, year
-# possible interaction terms: 
-#gen:sex --> 
-##    Do the effects of genotype on birthweight 
+# possible interaction terms and interpretation: 
+#
+# gen:sex -->
+# Interpretation: Do the effects of genotype on birthweight 
 #      differ between male and female lambs?
+#
 # gen:year -->
-#     Do the effects of genotype on birth weight 
+#  Interpretation: Do the effects of genotype on birth weight 
 #     differ among birth year cohorts?
+#
 # year:sex -->
-#     Do the effects of sex on birth weight differ
+# Interpretation: Do the effects of sex on birth weight differ
 #     among birth year cohorts?
-
+#
 # gen:sex:year -->
-#   Do the effects of genotype differ between male 
+# Interpretation: Do the effects of genotype differ between male 
 #   and female lambs, and do these effects vary 
 #   across birth cohorts?
 # which interactions make sense based on our understanding of the system?
 # which interactions look likely based on 
 
 # Pre-modeling exploratory analysis ----------
-## What is the effect of genotype on birth weight, wean weight and wean age?
-## Important covariates: sex, birth year.
+## Before fitting any models, examine the data and summary statistics for response variables 
+# grouped by predictor variables (genotype, sex, birth year).
 
 ## Main effects-----
 ### genotype vs. birth weight
@@ -93,8 +96,7 @@ sheep %>%
 
 # empirical means
 tapply(sheep$birthwt, sheep$gen, mean)
-# interpretation:
-# FILL IN
+
 
 ### sex vs birth weight
 psex <- sheep %>%
@@ -104,7 +106,8 @@ psex <- sheep %>%
   ggforce::geom_sina(alpha= 0.5) 
 psex
 
-#interpretation:
+
+# Summarize your interpretation of the plots and summary statistics about the relationship between
 # FILL IN
 
 ### year vs birth weight
@@ -156,7 +159,7 @@ pgensexyear <-
 
 pgensexyear
 
-# Plotting the data reveals some consideration for 
+# Plotting the data reveals some considerations for 
 # modeling:
 # look at pgensexyear. What is the problem?
 # FILL IN
