@@ -22,8 +22,31 @@
 	<summary>...</summary>
   
 - [Syllabus](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/blob/main/Syllabus.pdf)
-- [Slides](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/tree/main/slides)
+- [Slides](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/blob/main/slides/WorkshopSlides.pdf)
 - [Mini Bayesian analysis project](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/tree/main/miniProject)
+
+</details>
+
+## Case studies
+
+<details open>
+	<summary>...</summary>
+	
+Bayesian Correlation - PCA Approach for Soil Quality Assessment, Quadri Popoola
+
+- [Slides](Link TBA)
+
+Integrating long-term crop rotation experiments with the DRIVES Network, Katherine Muller
+
+-  [DRIVES project website](https://www.drives-network.org/)
+- [Slides](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/blob/main/slides/DRIVEScaseStudy.pdf)
+- Bayesian analysis example: [Bybee-Finley et al. 2024, Rotational complexity increases cropping system output under poorer growing conditions](https://doi.org/10.1016/j.oneear.2024.07.008)
+- [Bayesian analysis code](https://doi.org/10.15482/USDA.ADC/25943899)
+
+Agronomic research in Malawi, Frederi Viens
+
+- [Han et al. 2019, A Bayesian analysis of longitudinal farm surveys in Central Malawi reveals yield determinants and site-specific management strategies](https://doi.org/10.1371/journal.pone.0219296)
+- [Tu et al. 2022, A Bayesian approach to understand controls on total and labile soil carbon in cultivated soils of Central and Southern Malawi](https://doi.org/10.1016/j.geoderma.2022.115746)
 
 </details>
 
