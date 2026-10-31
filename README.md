@@ -29,7 +29,7 @@
 
 ## Case studies
 
-<details open>
+<details>
 	<summary>...</summary>
 	
 Bayesian Correlation - PCA Approach for Soil Quality Assessment, Quadri Popoola
