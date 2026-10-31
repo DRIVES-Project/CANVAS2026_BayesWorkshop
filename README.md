@@ -21,8 +21,8 @@
 <details open>
 	<summary>...</summary>
   
-- [Syllabus](LINK TBA)
-- [Slides](LINK TBA)
+- [Syllabus](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/blob/main/Syllabus.pdf)
+- [Slides](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/tree/main/slides)
 - [Mini Bayesian analysis project](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/tree/main/miniProject)
 
 </details>
