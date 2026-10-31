@@ -96,12 +96,12 @@ This module was developed by Dr. Sam Manski for a 2023 workshop in Ethiopa, mode
 Rice students and 2023 workshop participants gave glowing reviews about how this module helped make learning R accessible and fun. 
 
 You can find Dr. Manski's original workshop materials on Posit Cloud: https://posit.cloud/content/5486172. This folder contains a PDF copy of his original book chapter and R exercises with minor revisions for an asynchronous format.  
-- [Book] (insert link)
-- [Exercises] (insert link)
-- [Exercise solutions](insert link) 
+- [Book](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/blob/main/RcodingBasics/YouCanLearnR/You_Can_Learn_R.pdf)
+- [Exercises](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/tree/main/RcodingBasics/YouCanLearnR/Exercises)
+- [Exercise solutions](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/tree/main/RcodingBasics/YouCanLearnR/Exercise_Solutions) 
 
 ### *Additional practice *
-[Exercises](insert link)
+[Exercises](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/tree/main/RcodingBasics/AdditionalRpractice)
 
 
 </details>
