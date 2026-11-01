@@ -50,7 +50,7 @@ sheep <- sheep %>%
 
 hist(sheep$birthwt, bins = 20)
 hist(sheep$std_birthwt, bins = 20)
-
+plot(sheep$birthwt, sheep$std_birthwt)
 # Build model-----------
 # response variable: birthwt
 # predictors: gen, sex, year
