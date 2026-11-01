@@ -22,6 +22,7 @@
 	<summary>...</summary>
   
 - [Syllabus](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/blob/main/Syllabus.pdf)
+- [Glossary](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/blob/main/CANVAS%202026%20Bayes_Workshop_Glossary_Outline.pdf)
 - [Slides](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/blob/main/slides/WorkshopSlides.pdf)
 - [Mini Bayesian analysis project](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/tree/main/miniProject)
 
