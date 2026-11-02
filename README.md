@@ -124,8 +124,23 @@ You can find Dr. Manski's original workshop materials on Posit Cloud: https://po
 - [Exercises](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/tree/main/RcodingBasics/YouCanLearnR/Exercises)
 - [Exercise solutions](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/tree/main/RcodingBasics/YouCanLearnR/Exercise_Solutions) 
 
-### *Additional practice *
+### *Additional practice*
 [Exercises](https://github.com/DRIVES-Project/CANVAS2026_BayesWorkshop/tree/main/RcodingBasics/AdditionalRpractice)
 
 
 </details>
+
+### Additional recommended resources
+
+*Statistical Rethinking* by Richard McElreath
+
+- [Book](https://xcelab.net/rm/)
+- [Videos](https://www.youtube.com/playlist?list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus)
+- [Course](https://github.com/rmcelreath/stat_rethinking_2024)
+
+[*R for Data Science*](https://r4ds.hadley.nz/)
+
+[*Advanced R*](https://adv-r.hadley.nz/)
+
+[*R for Graduate Students*](https://bookdown.org/yih_huynh/Guide-to-R-Book/)
+
